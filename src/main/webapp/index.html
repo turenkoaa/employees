@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!doctype html>
+<html ng-app="purchaseApp">
+<head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+    <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/controllers/employeesController.js"></script>
+</head>
+<body ng-controller="employeesController">
+
+<div class="page-header">
+    <h1 align="center">Сотрудники</h1>
+</div>
+
+<table width="95%" border="0" align="center">
+    <tr>
+        <td width="70%" valign="top" class="panel">
+            <table ng-table="tableParams" class="table" show-filter="true" class="table table-condensed" >
+                    <tr ng-repeat="item in $data">
+                        <!--<td show="false">{{item.person.id}}</td>-->
+                        <td align="center" title="'Фамилия'" sortable="'person.surname'" filter="{ 'person.surname' : 'text'}">{{item.person.surname}}</td>
+                        <td align="center" title="'Имя'" sortable="'person.name'" filter="{ 'person.name' : 'text'}">{{item.person.name}}</td>
+                        <td align="center" title="'Отчество'" sortable="'person.middleName'" filter="{ 'person.middleName' : 'text'}">{{item.person.middleName}}</td>
+                        <td align="center" title="'Возраст'" >{{item.person.age}}</td>
+                        <td align="center" title="'Организация'" >{{item.organization.name}}</td>
+                        <td align="center" title="'Должность'" >{{item.post.name}}</td>
+                    </tr>
+            </table>
+        <td>
+        <td width="28%" valign="top" class="panel">
+            <form name="save_employee" ng-submit="submit_form()">
+
+                <input type="form-control" class="form-control" ng-model="form.surname" required="true" placeholder="Фамилия" />
+                <span class="help-block"></span>
+
+                <input type="form-control" class="form-control" ng-model="form.name" required="true" placeholder = "Имя" />
+                <span class="help-block"></span>
+
+                <input type="form-control" class="form-control" ng-model="form.middleName" required="true" placeholder="Отчество" />
+                <span class="help-block"></span>
+
+                <input type="number" min="18" max="100" class="form-control" ng-model="form.age" required="true" placeholder="Возраст" />
+                <span class="help-block"></span>
+
+                <select id="companyBox" class="form-control" ng-model="form.orgId" required>
+                     <option selected disabled value=''>Выберите компанию</option>
+                     <option ng-repeat="item in companies" value="{{item.id}}">{{item.name}}</option>
+                </select>
+                <span class="help-block"></span>
+
+                <select id="postBox" class="form-control" ng-model="form.postId" required>
+                    <option selected disabled value=''>Выберите должность</option>
+                    <option ng-repeat="item in posts" value="{{item.id}}">{{item.name}}</option>
+                </select>
+                <span class="help-block"></span>
+
+                <button type="submit" class="btn btn-success btn-lg btn-block">Добавить сотрудника</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+
+</html>
