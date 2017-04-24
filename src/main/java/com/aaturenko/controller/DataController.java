@@ -62,7 +62,7 @@ public class DataController extends ExceptionHandlerController {
                 return Ajax.emptyResponse();
             }
             else{
-                return Ajax.errorResponse("Сотрудник не может быть заведен в одной организации дважды.");
+                return Ajax.errorResponse("Data error.");
             }
         } catch (Exception e) {
             throw new RestException(e);

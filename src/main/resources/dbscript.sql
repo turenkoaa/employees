@@ -2,6 +2,9 @@
  * Create datadase and tables
  */
 
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '1221';
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'localhost';
+
 CREATE DATABASE employees;
 
 USE `employees`;
@@ -80,7 +83,11 @@ ALTER TABLE person CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
 /**
  * Insert data
  */
- 
+
 insert into organization (name) values ('ПрофВояж'),('ЗагранЭкстрим'),('Сувенир tur'),('Загранка'),('СтандартТрэвэл'),('ЭкоТранзит'),('ВояжВсемъ'),('Путевочка'),('ЛюксВояж'),('ТурДеМир');
 
 insert into post (name) values ('директор турагентства'),('главный бухгалтер'),('менеджер по бронированию и продажам'),('менеджер по визовому обеспечению'),('менеджер по персоналу'),('администратор офиса'),('гид-переводчик'),('экскурсовод'),('агент по туризму'),('секретарь руководителя'),('оператор туристических услуг');
+
+insert into person (name, surname, middle_name, age) values ('Осипов', 'Ярослав', 'Митрофанович', 45), ('Буров', 'Федосей', 'Демьянович', 34),('Крылов', 'Юлиан', 'Серапионович', 37), ('Андреев', 'Александр', 'Александрович', 26), ('Аседова', 'Елизавета', 'Виталиевна', 56), ('Валинуров', 'Денис', 'Юрьевич', 30);
+
+insert into employee (person_id, organization_id, post_id) values (1, 1, 1), (1, 2, 1), (2, 2, 3), (2, 3, 4), (3, 5, 6), (4, 6, 5), (5, 4, 2), (6, 1, 3);
